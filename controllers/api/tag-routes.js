@@ -14,9 +14,19 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    // create a new tag
+    // Use Sequelize's `create()` method to add a row to the table
+    // Similar to `INSERT INTO` in plain SQL
+    Tag.create({
+        tag_name: req.body.tag_name,
+    })
+        .then((newTag) => {
+            // Send the newly created row as a JSON object
+            res.json(newTag);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
 });
-
 router.put('/:id', (req, res) => {
     // update a tag's name by its `id` value
 });
