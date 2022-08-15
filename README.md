@@ -1,26 +1,47 @@
 # E-commerce-back-end-build
 
-# Site Link
-https://hoeferm2.github.io/hoefer-trivia-site/
+- Repo URL: https://github.com/hoeferm2/E-commerce-back-end-build
+- Video Demonstration: https://drive.google.com/file/d/1U9BwssVXmXun5hRjfw2cPcTMz3_eBAi7/view
 
-# git-hub Repository Link
-https://github.com/hoeferm2/hoefer-trivia-site/
-## This weeks task
-# 04 Web APIs: Code Quiz
+## Table of Contents
 
-## Your Task
+- [Description](#description)
+- [Installation](#installation)
+- [APIs](#APIs)
+- [Usage](#usage)
+- [Bugs](#bugs)
+- [Credits](#credits)
 
-For this modules assignment we were tasked with creating a trivia quiz through javascript. My quiz had Start button functionality along with a button to bring the user to the high score page.. A user score and timer were displayed on the top of the screen. 
+## Description
+
+This is a back end data base build. This allows an ecommerce website to update inventory and stock. Products can be organized via categories or descriptor tags. 
+
+## Installation
+
+- Users should have Node JS installed
+- This applicaiton uses express, Sequelize, mysql2, and dotenv.
+- Users should run npm i to install the correct packages.
+- Users will create a .env file with DB_NAME: "ecommerce_db" DB_PASSWORD: user password, and finally DB_USER: username.
+- User will then run mysql and run the schema.sql file out of the data base folder.
+- Finally user will run npm seed to initially seed the database.
+
+## APIs
+
+- This API has four categories. Products, categories, tags, and producttags.
+- Products are items for sale this also inclues iten stock.
+- Categories organize products into types of product.
+- Tags are product descriptors.
+
+## Usage
+
+- Users will be able to update ecommerece_db through GET POST PUT and DELETE requests
+- Users can edit or remove entries via the entry id number.
+
+## Bugs
+
+- Check DB in insomnia after seeding, it shows null id values double check in mysql via "use ecommerce_db" and "select * from (table)"
 
 
-![start](./assets/screenshots/startpage.PNG)
+## Credits
 
-User score would update on the clicking of the correct answer button. If users got the answer wrong they would lose 5 seconds on the timer. I was unable to implement local storage. So there is no high score function. Each of the four buttons was an independent link that texted textcontent of the button vs. the answer object in an array. Score was both a flat number as well as a time remaining multiplier. If user runs out of time the game will also end. 
-
-
-![in-game](./assets/screenshots/ingame.PNG)
-
-![end-game](./assets/screenshots/end screen.PNG)
-
-## Graditude.
-Thanks to all the slack assistants for working me through the button functions. Thanks to Henry and Lindsey for helping explain endgame conditions. 
+- Thanks to Gabe Sowa for walking me through routes.

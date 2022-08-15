@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 
     Category.create({
-        tag_name: req.body.tag_name,
+        category_name: req.body.category_name,
     })
         .then((newCategory) => {
             // Send the newly created row as a JSON object
