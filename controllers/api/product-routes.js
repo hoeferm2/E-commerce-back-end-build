@@ -6,7 +6,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get("/", (req, res) => {
     Product.findAll({
-        include: [Category, Tag, ProductTag]
+        include: [Category, Tag,]
     }).then(data => {
         res.json(data)
     }).catch(err => {
@@ -16,18 +16,19 @@ router.get("/", (req, res) => {
 
 // get one product
 router.get('/:id', (req, res) => {
-
-    Product.findOne(
-        {
-            where: {
-                id: req.params.id
-            },
+    // find a single tag by its `id`
+    // be sure to include its associated Product data
+    Product.findOne({
+        include: [Tag, Category],
+        where: {
+            id: req.params.id
         }
-    ).then((productData) => {
-        res.json(productData);
-    });
+    }).then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.status(500).json({ msg: "womp womp", err })
+    })
 });
-
 // create new product
 router.post('/', (req, res) => {
 
@@ -36,6 +37,10 @@ router.post('/', (req, res) => {
         price: req.body.price,
         stock: req.body.stock,
         category_id: req.body.category_id
+    }, {
+        where: {
+            id: req.params.id
+        }
     }).then((product) => {
         // if there's product tags, we need to create pairings to bulk create in the ProductTag model
         if (req.body.tagIds.length) {
@@ -100,7 +105,15 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    // delete one product by its `id` value
-});
+    Product.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.status(500).json({ msg: "womp womp", err })
+    })
+})
 
 module.exports = router;
